@@ -1,0 +1,6 @@
+node_modules/
+out/
+# 歌曲和真实截图不进仓库（版权 / 个人信息），清单见 assets/shots/README.md
+assets/song.*
+assets/shots/*
+!assets/shots/README.md

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>吃灰 studio</title>
+<link rel="stylesheet" href="node_modules/@fontsource/permanent-marker/400.css">
+<link rel="stylesheet" href="node_modules/@fontsource/shantell-sans/800.css">
+<link rel="stylesheet" href="node_modules/@fontsource/ma-shan-zheng/400.css">
+<style>
+  html, body { margin: 0; background: #1b1820; color: #eee; font: 13px system-ui, sans-serif; }
+  main { padding: 12px; display: grid; gap: 8px; }
+  #out { width: min(96vw, 1920px); aspect-ratio: 16 / 9; height: auto; background: #F3EBDC; }
+  .p5Canvas { display: none !important; }
+  .bar { display: flex; gap: 10px; align-items: center; max-width: 960px; }
+  #scrub { flex: 1; }
+  #tt { font-variant-numeric: tabular-nums; min-width: 190px; }
+</style>
+<script src="node_modules/p5/lib/p5.min.js"></script>
+<script src="node_modules/p5.brush/dist/p5.brush.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="out" width="1920" height="1080"></canvas>
+  <div class="bar"><input id="scrub" type="range" min="0" max="11" step="0.0417" value="0"><span id="tt">loading…</span></div>
+</main>
+<!-- engine -->
+<script src="src/config.js"></script>
+<script src="src/core.js"></script>
+<script src="src/timeline.js"></script>
+<script src="src/assets.js"></script>
+<script src="src/karaoke.js"></script>
+<!-- 吃灰：角色道具库，然后按段落的镜头 -->
+<script src="src/scenes/ch_cast.js"></script>
+<script src="src/scenes/ch_props.js"></script>
+<script src="src/scenes/ch_props2.js"></script>
+<script src="src/scenes/v1_verse.js"></script>
+<script src="src/scenes/v1_pre.js"></script>
+<script src="src/scenes/c1_chorus.js"></script>
+<script src="src/scenes/v2_verse.js"></script>
+<script src="src/scenes/c2_chorus.js"></script>
+<script src="src/scenes/r_rap.js"></script>
+<script src="src/scenes/b_bridge.js"></script>
+<script src="src/scenes/v3_verse.js"></script>
+<script src="src/scenes/f_final.js"></script>
+<script src="src/scenes/cover.js"></script>
+</body>
+</html>

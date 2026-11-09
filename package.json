@@ -1,0 +1,19 @@
+{
+  "name": "chihui-mv",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "《吃灰》水彩手绘风歌词 MV 的源代码：p5.js + p5.brush 逐帧绘制，headless Chrome 渲染，ffmpeg 合成",
+  "scripts": {
+    "sheet": "node render.mjs --sheet=10,45,120,180 --cols=2 --w=640 --out=out/check/sheet.jpg",
+    "frames": "node render.mjs --frames --workers=2"
+  },
+  "dependencies": {
+    "@fontsource/ma-shan-zheng": "^5.3.1",
+    "@fontsource/permanent-marker": "^5.3.0",
+    "@fontsource/shantell-sans": "^5.3.0",
+    "p5": "^2.3.3",
+    "p5.brush": "^2.2.3",
+    "puppeteer-core": "^25.11.0"
+  }
+}
