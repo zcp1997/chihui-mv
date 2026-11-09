@@ -1,10 +1,10 @@
 // assets.js：真实截图的载入与绘制，以及中文字的写法。
-// 截图放在 assets/shots/，按分镜编号取用（A01…A36），清单见 assets/shots/README.md。
+// 截图放在 assets/shots/，按分镜编号取用（A01…A36，A04 已不用），清单见 assets/shots/README.md。
 // 缺哪张就用灰色占位图代替，没有截图也能跑起来看动画。
 const SHOT_DIR = 'assets/shots/';
 const SHOT_FILES = {
   A01: 'A01_群里喊补货_ONECAT.jpg', A02: 'A02_论坛补货帖.png', A03: 'A03_库存4_Available.jpg',
-  A04: 'A04_支付宝付款成功_打码.png', A05: 'A05_付款成功邮件_打码.jpg', A06: 'A06_上一台还没开过机_PENDING.jpg',
+  A05: 'A05_付款成功邮件_打码.jpg', A06: 'A06_上一台还没开过机_PENDING.jpg',
   A07: 'A07_四个机房_HK_JP_DE_LA.png', A08: 'A08_世界地图节点.jpg', A09: 'A09_护照封面.jpg',
   A10: 'A10_年付10刀.jpg', A11: 'A11_年付7刀.jpg', A12: 'A12_库存0_Available.jpg', A13: 'A13_猪脚饭.jpg',
   A14: 'A14_CPU0占用.jpg', A15: 'A15_探针面板.jpg', A16: 'A16_探针在线列表.jpg', A17: 'A17_重装_选Debian.jpg',

@@ -25,7 +25,7 @@ npm install
 | 放哪 | 是什么 |
 |---|---|
 | `assets/song.wav` | 歌曲音频（`src/config.js` 里的 `PROJECT.audio`，换成 mp3 就改这里） |
-| `assets/shots/` | 36 张截图，文件名和用途见 [assets/shots/README.md](assets/shots/README.md) |
+| `assets/shots/` | 35 张截图，文件名和用途见 [assets/shots/README.md](assets/shots/README.md) |
 
 截图缺了也能跑，缺的会用写着编号的灰色占位图代替。
 

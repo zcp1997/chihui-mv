@@ -39,8 +39,9 @@
     boilSeed('w03 slot'); paint(rrPts(520, 60, 880, 820, 20), { wash: '#1F1A38', ink: PAL.ink, sw: 1.2 });
     ahChick(960, 420, 200, { key: 'w03 me' });
     boilSeed('w03 lan'); inkLine([[860, 330], [760, 640]], 1.2, '#E0412F', 'ink', .3); inkLine([[1060, 330], [1160, 640]], 1.2, '#E0412F', 'ink', .3);
-    PR.card(960, 700, 560, 119, { key: 'w03 card', pad: 10 });
-    shotImg('A35', 960, 700, 560, { rot: Math.sin(t * 1.5) * .03 });
+    // 只取截图里「1 vCPU · 1 GB 内存 · 10 GB 存储空间」那一行，放大当工牌
+    PR.card(960, 720, 1150, 110, { key: 'w03 card', pad: 16, col: '#0E1219' });
+    shotImg('A35', 960, 720, 1150, { src: [452, 151, 420, 40], rot: Math.sin(t * 1.5) * .02 });
   }
   // 167.15 每天准时在线：早高峰地铁，一车厢头顶绿灯的小鸡人
   function w04(t) {

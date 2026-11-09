@@ -129,13 +129,32 @@
     for (let i = 0; i < 3; i++) if (t < 13) { const a = frac(t * 3 + i / 3); inkLine([[bx - 140 - a * 60, 790 + i * 30], [bx - 100 - a * 60, 790 + i * 30]], .8, '#C9D6FF', 'inkfine', 0); }
   }
 
-  // 13.48 付完款 才想起：支付宝 -299 弹出，邮件滑入，阿灰定住
+  // 手机里的付款成功页（代码画的，不用真实的支付截图）：绿勾、付款成功、$10.00
+  function paidScreen(t, s, t0) {
+    const k = backOut(seg(t, t0, t0 + .35)), cy = s.y0 + 230;
+    ui('支付结果', s.cx, s.y0 + 50, 28, '#8C8C99', { bold: false });
+    boilSeed('paid ring'); paint(ellPts(s.cx, cy, 86 * k, 86 * k, 30), { wash: '#2EC46A', ink: PAL.ink, sw: .9 });
+    if (k > .6) { boilSeed('paid tick'); inkLine([[s.cx - 38, cy + 2], [s.cx - 8, cy + 32], [s.cx + 42, cy - 30]], 3.4, '#FFFFFF', 'ink', .1); }
+    if (t > t0 + .15) {
+      ui('付款成功', s.cx, s.y0 + 370, 54, '#2B2233');
+      ui('$10.00', s.cx, s.y0 + 470, 96, '#2B2233', { font: `700 96px ${CN}` });
+      boilSeed('paid line'); inkLine([[s.x0 + 40, s.y0 + 545], [s.x0 + s.w - 40, s.y0 + 545]], .6, '#D6D6DE', 'inkfine', 0);
+      [['商品', '年付 VPS · 1C1G'], ['金额', '$10.00 USD'], ['时间', '02:01']].forEach(([a, b], i) => {
+        ui(a, s.x0 + 50, s.y0 + 600 + i * 56, 30, '#8C8C99', { align: 'left', bold: false });
+        ui(b, s.x0 + s.w - 50, s.y0 + 600 + i * 56, 30, '#2B2233', { align: 'right', bold: false });
+      });
+      boilSeed('paid btn'); paint(rrPts(s.cx - 150, s.y0 + s.h - 110, 300, 72, 36), { wash: '#2EC46A', ink: null });
+      ui('完成', s.cx, s.y0 + s.h - 74, 34, '#FFFFFF');
+    }
+  }
+
+  // 13.48 付完款 才想起：手机弹出付款成功 $10，邮件滑入，阿灰定住
   function s05(t, lt) {
     PR.nightBG('s05', { floor: false });
     PR.dust(t, 24, 's05 dust', { op: 100 });
     const up = easeOut(seg(t, 13.48, 13.85));
     const s = PR.phone(1380, lerp(1400, 560, up), 470, 940, { key: 's05 phone', glow: .6 });
-    shotImg('A04', s.cx, s.cy + 20, s.w - 10);
+    paidScreen(t, s, 13.6);
     const em = backOut(seg(t, 14.35, 14.75));
     if (t > 14.35) { PR.card(870, lerp(-200, 190, em), 760, 172, { key: 's05 mail', pad: 12 }); shotImg('A05', 870, lerp(-200, 190, em), 760); }
     const froze = t > 14.95;
