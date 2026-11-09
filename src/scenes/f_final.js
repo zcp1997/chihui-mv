@@ -105,28 +105,42 @@
     glow(1300, 420, 600, '#6E8BFF', .4);
     PR.card(1300, 420, 800, 359, { key: 'f10 btn' });
     shotImg('A03', 1300, 420, 800);
-    const k = ease(seg(t, 206.5, 208.0));
+    const k = ease(seg(t, 206.45, 207.4));
     PR.finger(1300 + (1 - k) * 500, 380 - (1 - k) * 260 - 30 + Math.sin(t * 3) * 4, 80, -.5, { key: 'f10 fg' });
     AH.bust(430, 1190, 170, { key: 'f10 ah', t, eyes: 'happy', mouth: 'smile', blush: .5, lensGlow: .7 });
     PR.dust(t, 20, 'f10 dust', { op: 90 });
   }
-  // 212.55 回车：咔地按下，黑场；最后一张字卡「吃灰」，一只小鸡打了个哈欠
+  // 208.00 片尾字卡（鸡汤）：压暗的探针绿点当夜空，一句一句淡入，最后跟音乐一起淡出
+  const CARD_FONT = '"STZhongsong", "华文中宋", "Songti SC", serif', CREAM = '#F0EADE';
+  const CARD = [
+    [208.6, '机器可以吃灰，热爱不会。', 66, 340],
+    [211.2, '愿你的小鸡永远在线，也愿你被人记得。', 56, 470],
+    [213.8, '—— 献给每一位 MJJ 的歌', 40, 620],
+  ];
+  window.EXTRA_FONTS = (window.EXTRA_FONTS || []).concat([[`66px ${CARD_FONT}`, CARD.map(c => c[1]).join('') + '吃灰']]);
   function f11(t) {
-    boilSeed('f11 bg'); paint(rectPts(-200, -200, W + 400, H + 400), { wash: '#0B0C14', ink: null });
-    if (t < 213.2) {
-      glow(960, 520, 500, '#6E8BFF', .3);
-      PR2.key(960, 520, 260, 'Enter', { key: 'f11 key', down: t > 212.95, col: '#E8E6EF' });
-      if (t > 212.95) flash(seg(t, 212.95, 213.2), '#000000');
-    } else {
-      const a = ease(seg(t, 213.6, 214.6)) * (1 - seg(t, 217.5, 218.4));
-      letter('吃灰', 960, 380, 280, '#E9E2D6', { font: `280px ${TITLE_FONT}`, alpha: a, ink: false });
-      if (a > .05) {
-        const yawn = t > 215.2 && t < 216.6 ? Math.sin(seg(t, 215.2, 216.6) * Math.PI) : 0;
-        CK.chick(960, 760, 80, { key: 'f11 ck', eyes: 'closed', shout: yawn, sq: -.1 * yawn, light: a, dust: .3 + seg(t, 214, 218) * .4 });
-        PR.dust(t, 30, 'f11 dust', { y1: 900, fall: 25, col: '#9C968E', op: 200 * a });
-      }
+    boilSeed('f11 bg'); paint(rectPts(-200, -200, W + 400, H + 400), { wash: '#0B101E', ink: null });
+    for (let gx = -6; gx <= 6; gx++) for (let gy = -3; gy <= 3; gy++) {
+      const i = (gx + 10) * 20 + gy + 10, b = .25 + .2 * Math.sin(t * 1.3 + hash(i) * 6);
+      glow(960 + gx * 160 + (hash(i * 3) - .5) * 70, 470 + gy * 150 + (hash(i * 7) - .5) * 50, 38, '#59D98C', b);
     }
+    PR.dust(t, 30, 'f11 gd', { fall: 14, col: '#FFE3A0', op: 150, r: 4 });
+    const out = 1 - ease(seg(t, 217.2, 218.35));
+    // 底下一排小鸡，头顶的灯轮流闪
+    for (let i = 0; i < 7; i++) {
+      const k = ease(seg(t, 208.2 + i * .08, 208.8 + i * .08)) * out;
+      if (k > .02) CK.chick(600 + i * 120, 930, 36, { key: 'f11 ck' + i, eyes: 'closed', light: k * (.55 + .45 * Math.sin(t * 2.4 + i * .9)), glowA: .7 * k, flap: .1 });
+    }
+    for (const [t0, txt, size, y] of CARD) {
+      const a = ease(seg(t, t0, t0 + .7)) * out;
+      if (a > .01) letter(txt, 960, y - 10 * (1 - a), size, CREAM, { font: `${size}px ${CARD_FONT}`, spacing: Math.round(size * .18), alpha: a, ink: false, shadow: 'rgba(0,0,0,.75)' });
+    }
+    const ta = ease(seg(t, 215.0, 215.8)) * out;
+    if (ta > .01) letter('吃灰', 960, 790, 44, '#BFB6A6', { font: `44px ${CARD_FONT}`, spacing: 18, alpha: ta, ink: false, shadow: 'rgba(0,0,0,.75)' });
+    // 从上一镜淡进来；最后整体压暗淡出（小鸡没有透明度，靠这层盖住）
+    flash(1 - ease(seg(t, 208.0, 208.5)), '#0B101E');
+    flash(ease(seg(t, 217.0, 218.3)), '#05070D');
   }
 
-  shots([[178.56, f01], [180.80, f02], [183.35, f03], [185.50, f04], [188.22, f05], [190.37, f06], [192.77, f07], [195.08, f08], [204.73, f09], [206.41, f10], [212.55, f11]]);
+  shots([[178.56, f01], [180.80, f02], [183.35, f03], [185.50, f04], [188.22, f05], [190.37, f06], [192.77, f07], [195.08, f08], [204.73, f09], [206.41, f10], [208.00, f11]]);
 })();
