@@ -259,7 +259,7 @@
 
 ## 实际制作记录
 
-- **代码项目**：`R&B/吃灰/painted_mv/`（从 `古风/白囍/painted_mv/` 复制，画布改成 1920×1080）。截图直接从 `MV素材/截图/` 载入，没有另外复制。
+- **代码项目**：`R&B/吃灰/painted_mv/`截图直接从 `MV素材/截图/` 载入，没有另外复制。
   - 场景文件按段落分：`v1_verse.js`（前奏 + 主歌一）、`v1_pre.js`（预副歌一）、`c1_chorus.js`（副歌一）、`v2_verse.js`、`c2_chorus.js`（预副歌二 + 副歌二）、`r_rap.js`、`b_bridge.js`、`v3_verse.js`、`f_final.js`（最后副歌 + 尾声）。
   - 角色在 `ch_cast.js`，道具在 `ch_props.js`、`ch_props2.js`；歌词条在 `src/karaoke.js`，是从 SRT 合并重复句后手工整理的。
 - **节拍**：`config.js` 里写的是 87.6 BPM、首拍 0.248 秒。这是按前 45 秒测的，后半段测出来不太稳定，节拍只用在小动作上，镜头切点以 SRT 为准。
